@@ -230,7 +230,7 @@ packages:
     source: hosted
     version: "1.8.0-nullsafety.3"
   pedantic:
-    dependency: "direct main"
+    dependency: "direct dev"
     description:
       name: pedantic
       url: "https://pub.dartlang.org"
