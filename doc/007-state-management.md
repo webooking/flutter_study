@@ -261,5 +261,42 @@ class ChildScreen extends StatelessWidget {
 
 ### 2.3.3 widget testing
 
+```dart
+testWidgets('sharing data between multi screens', (tester) async {
+  await tester.pumpWidget(GetMaterialApp(home: CounterScreen()));
+
+  expect(_findByKey(tester, 'ParentScreenText').data, '0');
+
+  await _tapFloatingActionButton(tester);
+  expect(_findByKey(tester, 'ParentScreenText').data, '1');
+
+  await _tapRaisedButton(tester);//Navigate to ChildScreen
+  expect(_findByKey(tester, 'ChildScreenText').data, '1');
+
+  await _tapFloatingActionButton(tester);
+  await _tapFloatingActionButton(tester);
+  expect(_findByKey(tester, 'ChildScreenText').data, '-1');
+
+  await _tapRaisedButton(tester);//Navigate to ParentScreen
+  expect(_findByKey(tester, 'ParentScreenText').data, '-1');
+});
+```
+### 2.3.4 自定义的测试工具
+
+```
+Future<void> _tapByType(WidgetTester tester, Type type) async {
+  final button = find.byType(type);
+  await tester.tap(button);
+  await tester.pumpAndSettle();
+}
+
+Future<void> _tapRaisedButton(WidgetTester tester) async => _tapByType(tester, RaisedButton);
+
+Future<void> _tapFloatingActionButton(WidgetTester tester) async => _tapByType(tester, FloatingActionButton);
+
+Text _findByKey(WidgetTester tester, String key) => tester.widget<Text>(find.byKey(ValueKey(key)));
+
+```
+
 
 

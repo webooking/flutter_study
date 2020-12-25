@@ -16,6 +16,7 @@ class ChildScreen extends StatelessWidget {
             Text('child screen get count value from parent: '),
             Obx(() => Text(
               '${controller.count.value}',
+              key: ValueKey('ChildScreenText'),
               style: Theme.of(context).textTheme.headline4,
             )),
             RaisedButton(

@@ -19,6 +19,7 @@ class CounterScreen extends StatelessWidget {
             Text('You have pushed the button this many times:'),
             Obx(() => Text(
                   '${controller.count}',
+                  key: ValueKey('ParentScreenText'),
                   style: Theme.of(context).textTheme.headline4,
                 )),
             RaisedButton(
