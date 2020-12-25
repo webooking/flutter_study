@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_study/screen/counter/counter_screen.dart';
 import 'package:get/get.dart';
 
+import 'config/routes.dart';
+
 void main() {
-  runApp(GetMaterialApp(home: CounterScreen()));
+  runApp(GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+      getPages: pages,
+      initialRoute: RouteNames.CounterScreen,
+  ));
 }

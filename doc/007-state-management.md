@@ -181,7 +181,7 @@ testWidgets('tap & observable count.value', (tester) async {
 ```dart
 import 'package:flutter/material.dart';
 import 'package:flutter_study/controller/CounterController.dart';
-import 'package:flutter_study/screen/counter/child_screen.dart';
+import 'package:flutter_study/screen/counter/counter_child_screen.dart';
 import 'package:get/get.dart';
 
 class CounterScreen extends StatelessWidget {
@@ -204,7 +204,7 @@ class CounterScreen extends StatelessWidget {
                 )),
             RaisedButton(
               child: Text('Go to Child Screen'),
-              onPressed: () => Get.to<CounterController>(ChildScreen()),
+              onPressed: () => Get.to<void>(ChildScreen()),
             ),
           ],
         ),
@@ -244,7 +244,7 @@ class ChildScreen extends StatelessWidget {
             )),
             RaisedButton(
               child: Text('Go to Parent Screen'),
-              onPressed: () => Get.back<CounterController>(),
+              onPressed: () => Get.back<void>(),
             ),
           ],
         ),
@@ -297,6 +297,12 @@ Future<void> _tapFloatingActionButton(WidgetTester tester) async => _tapByType(t
 Text _findByKey(WidgetTester tester, String key) => tester.widget<Text>(find.byKey(ValueKey(key)));
 
 ```
+
+# 3 routes
+
+## 3.1 重构CounterScreen
+
+
 
 
 

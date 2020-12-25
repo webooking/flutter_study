@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_study/config/routes.dart';
 import 'package:flutter_study/controller/CounterController.dart';
-import 'package:flutter_study/screen/counter/child_screen.dart';
 import 'package:get/get.dart';
 
 class CounterScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    final controller = Get.put(CounterController());
+    final controller = Get.find<CounterController>();
 
     return Scaffold(
       appBar: AppBar(
@@ -24,7 +24,7 @@ class CounterScreen extends StatelessWidget {
                 )),
             RaisedButton(
               child: Text('Go to Child Screen'),
-              onPressed: () => Get.to<CounterController>(ChildScreen()),
+              onPressed: () => Get.toNamed<void>(RouteNames.CounterChildScreen),
             ),
           ],
         ),

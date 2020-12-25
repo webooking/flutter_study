@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_study/screen/counter/counter_screen.dart';
+import 'package:flutter_study/config/routes.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:get/get.dart';
 
 void main() {
   testWidgets('appBar text', (tester) async {
-    await tester.pumpWidget(GetMaterialApp(home: CounterScreen()));
+    await _pumpApp(tester);
 
     expect(find.textContaining('Click'), findsOneWidget);
     expect(find.textContaining('Clicks: '), findsOneWidget);
   });
 
   testWidgets('tap floatingActionButton', (tester) async {
-    await tester.pumpWidget(GetMaterialApp(home: CounterScreen()));
+    await _pumpApp(tester);
 
     expect(find.byTooltip('Increment'), findsOneWidget);
     final button = tester.widget<FloatingActionButton>(find.byType(FloatingActionButton));
@@ -20,7 +20,7 @@ void main() {
   });
 
   testWidgets('long press', (tester) async {
-    await tester.pumpWidget(GetMaterialApp(home: CounterScreen()));
+    await _pumpApp(tester);
 
     expect(find.text('Increment'), findsNothing);
 
@@ -30,7 +30,7 @@ void main() {
   });
 
   testWidgets('tap & observable count.value', (tester) async {
-    await tester.pumpWidget(GetMaterialApp(home: CounterScreen()));
+    await _pumpApp(tester);
 
     expect(find.text('Clicks: 0'), findsOneWidget);
 
@@ -41,7 +41,7 @@ void main() {
   });
 
   testWidgets('sharing data between multi screens', (tester) async {
-    await tester.pumpWidget(GetMaterialApp(home: CounterScreen()));
+    await _pumpApp(tester);
 
     expect(_findByKey(tester, 'ParentScreenText').data, '0');
 
@@ -58,6 +58,16 @@ void main() {
     await _tapRaisedButton(tester);//Navigate to ParentScreen
     expect(_findByKey(tester, 'ParentScreenText').data, '-1');
   });
+}
+
+Future _pumpApp(WidgetTester tester) async {
+  await tester.pumpWidget(
+      GetMaterialApp(
+        debugShowCheckedModeBanner: false,
+        getPages: pages,
+        initialRoute: RouteNames.CounterScreen,
+      )
+  );
 }
 
 Future<void> _tapByType(WidgetTester tester, Type type) async {
