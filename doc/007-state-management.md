@@ -298,9 +298,66 @@ Text _findByKey(WidgetTester tester, String key) => tester.widget<Text>(find.byK
 
 ```
 
-# 3 routes
+# 3 使用routes重构CounterScreen
 
-## 3.1 重构CounterScreen
+## 3.1 程序入口
+
+```
+import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+
+import 'config/routes.dart';
+
+void main() {
+  runApp(GetMaterialApp(
+      debugShowCheckedModeBanner: false,
+      getPages: pages,
+      initialRoute: RouteNames.CounterScreen,
+  ));
+}
+```
+
+## 3.2 routes
+
+`config/routes.dart`
+
+```dart
+import 'package:flutter_study/controller/CounterController.dart';
+import 'package:flutter_study/screen/counter/counter_child_screen.dart';
+import 'package:flutter_study/screen/counter/counter_screen.dart';
+import 'package:get/get.dart';
+
+abstract class RouteNames {
+  static const CounterScreen = '/counter';
+  static const CounterChildScreen = '/counter/child';
+}
+
+final pages = [
+  GetPage(
+    name: RouteNames.CounterScreen,
+    page: () => CounterScreen(),
+    binding: BindingsBuilder<CounterController>(() => Get.lazyPut(() => CounterController())),
+  ),
+  GetPage(
+    name: RouteNames.CounterChildScreen,
+    page: () => CounterChildScreen(),
+  ),
+];
+```
+
+## 3.3 CounterScreen
+
+```
+@override
+Widget build(BuildContext context) {
+  final controller = Get.find<CounterController>();
+  ...
+  Get.toNamed<void>(RouteNames.CounterChildScreen);
+  ...
+}
+```
+
+## 3.4 思考：CounterController的生命周期
 
 
 
