@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study/controller/CounterController.dart';
+import 'package:flutter_study/screen/counter/child_screen.dart';
 import 'package:get/get.dart';
 
 class CounterScreen extends StatelessWidget {
@@ -20,6 +21,10 @@ class CounterScreen extends StatelessWidget {
                   '${controller.count}',
                   style: Theme.of(context).textTheme.headline4,
                 )),
+            RaisedButton(
+              child: Text('Go to Child Screen'),
+              onPressed: () => Get.to<CounterController>(ChildScreen()),
+            ),
           ],
         ),
       ),

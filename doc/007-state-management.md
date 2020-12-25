@@ -174,5 +174,92 @@ testWidgets('tap & observable count.value', (tester) async {
 });
 ```
 
+## 2.3 多个widget之间数据共享
+
+### 2.3.1 CounterScreen
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:flutter_study/controller/CounterController.dart';
+import 'package:flutter_study/screen/counter/child_screen.dart';
+import 'package:get/get.dart';
+
+class CounterScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final controller = Get.put(CounterController());
+
+    return Scaffold(
+      appBar: AppBar(
+        title: Obx(() => Text('Clicks: ${controller.count}')),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('You have pushed the button this many times:'),
+            Obx(() => Text(
+                  '${controller.count}',
+                  style: Theme.of(context).textTheme.headline4,
+                )),
+            RaisedButton(
+              child: Text('Go to Child Screen'),
+              onPressed: () => Get.to<CounterController>(ChildScreen()),
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => controller.increment(),
+        tooltip: 'Increment',
+        child: Icon(Icons.add),
+      ),
+    );
+  }
+}
+```
+
+### 2.3.2 ChildScreen
+
+```dart
+import 'package:flutter/material.dart';
+import 'package:flutter_study/controller/CounterController.dart';
+import 'package:flutter_study/screen/counter/counter_screen.dart';
+import 'package:get/get.dart';
+
+class ChildScreen extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    final controller = Get.find<CounterController>();
+
+    return Scaffold(
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('child screen get count value from parent: '),
+            Obx(() => Text(
+              '${controller.count.value}',
+              style: Theme.of(context).textTheme.headline4,
+            )),
+            RaisedButton(
+              child: Text('Go to Parent Screen'),
+              onPressed: () => Get.back<CounterController>(),
+            ),
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => controller.decrement(),
+        tooltip: 'Decrement',
+        child: Icon(Icons.remove),
+      ),
+    );
+  }
+}
+```
+
+### 2.3.3 widget testing
+
 
 
