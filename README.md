@@ -1,4 +1,5 @@
 # flutter_study
+学习笔记与视频 https://www.youtube.com/watch?v=scSBDG8xwXs&list=PLo3TWrHd5HIa23IXRGQGNgCcPDYkqQaRZ
 
 A new Flutter project.
 
