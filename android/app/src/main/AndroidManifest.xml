@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="org.study.flutter_study">
    <application
-        android:label="flutter_study"
+        android:label="hooray"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

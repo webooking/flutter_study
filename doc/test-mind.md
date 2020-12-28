@@ -1,0 +1,17 @@
+# app
+## lib
+### main.dart
+### config
+### screen
+### controller
+### model
+## test
+## integration_test
+## assets
+### fonts
+### icons
+### images
+### lang
+## doc
+## analysis_options.yaml
+## pubspec.yaml
