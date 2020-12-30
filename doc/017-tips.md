@@ -8,3 +8,7 @@ defaults write com.apple.screencapture location /Users/yuri/workspace/idea/dart_
 killall SystemUIServer
 ```
 
+# 2 line length of the dart code
+
+![image-20201230085019389](assets/image-20201230085019389.png)
+
