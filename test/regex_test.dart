@@ -12,7 +12,7 @@ void main() {
     // });
     matches.map((match){
       // return match.input.substring(match.start, match.end);
-      return '${match.group(0)},${match.group(1)}';
+      return '${match.groupCount},${match.group(0)},${match.group(1)}';
     }).forEach((element) {
       print(element);
     });

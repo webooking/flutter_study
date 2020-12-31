@@ -13,24 +13,6 @@ class LangScreen extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            RaisedButton.icon(
-              icon: Icon(Icons.date_range),
-              label: Text(L.date.picker),
-              onPressed: () async {
-                await showDatePicker(
-                  context: context,
-                  locale: controller.lang.toLocale(),
-                  initialDate: DateTime.now(),
-                  firstDate: DateTime(2020),
-                  lastDate: DateTime(2025),
-                );
-              },
-            ),
-            SizedBox(height: 20),
-            Text(L.hello),
-            SizedBox(height: 20),
-            Text(L.greet('yuri')),
-            SizedBox(height: 100),
             DropdownButton<String>(
               icon: Icon(Icons.arrow_drop_down),
               value: controller.lang,
@@ -38,6 +20,89 @@ class LangScreen extends StatelessWidget {
               onChanged: (String value) {
                 controller.changeLocale(value);
               },
+            ),
+            SizedBox(height: 100),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text('date.picker'),
+                RaisedButton.icon(
+                  icon: Icon(Icons.date_range),
+                  label: Text(L.date.picker),
+                  onPressed: () async {
+                    await showDatePicker(
+                      context: context,
+                      locale: controller.lang.toLocale(),
+                      initialDate: DateTime.now(),
+                      firstDate: DateTime(2020),
+                      lastDate: DateTime(2025),
+                    );
+                  },
+                ),
+              ],
+            ),
+            SizedBox(height: 20),
+            Row(
+                mainAxisAlignment: MainAxisAlignment.spaceAround,
+                children: [
+                  Text('hello', style: TextStyle(fontWeight: FontWeight.bold),),
+                  Text(L.hello),
+                ],
+            ),
+            SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text('greet(firstName)', style: TextStyle(fontWeight: FontWeight.bold),),
+                Text(L.greet('yuri')),
+              ],
+            ),
+            SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text('notice', style: TextStyle(fontWeight: FontWeight.bold),),
+                Text(L.notice),
+              ],
+            ),
+            SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text('item.zero', style: TextStyle(fontWeight: FontWeight.bold),),
+                Text(L.item(0)),
+              ],
+            ),
+            SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text('item.one', style: TextStyle(fontWeight: FontWeight.bold),),
+                Text(L.item(1)),
+              ],
+            ),
+            SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text('item.more', style: TextStyle(fontWeight: FontWeight.bold),),
+                Text(L.item(100)),
+              ],
+            ),
+            SizedBox(height: 20),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text('contact(Gender.Male, lastName)', style: TextStyle(fontWeight: FontWeight.bold),),
+                Text(L.contact(Gender.Male, 'Li')),
+              ],
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
+              children: [
+                Text('contact(Gender.Female, lastName)', style: TextStyle(fontWeight: FontWeight.bold),),
+                Text(L.contact(Gender.Female, 'Marks')),
+              ],
             ),
           ],
         ),
