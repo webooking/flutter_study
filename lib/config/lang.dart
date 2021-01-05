@@ -7,84 +7,140 @@ class L extends Translations {
     'en_US': 'English',
     'zh_CN': '简体中文',
   };
-
   static final defaultLocale = Locale('en', 'US');
   static final fallbackLocale = Locale('en', 'US');
 
   @override
   Map<String, Map<String, String>> get keys => {
         'en_US': {
-          'hello': 'Hello!',
-          'greet': 'Hello {{firstName}}',
-          'date.picker': 'select date',
-          'notice': '''This is 
-a  multiline 
+          'hello': 'hello!',
+          'notice': '''This is  
+a multiline 
 example.''',
-          'item.zero': 'There are no items',
-          'item.one': 'There is {{count}} item',
-          'item.more': 'There are {{count}} items',
-          'contact.male': 'Mr {{lastName}}',
-          'contact.female': 'Mrs {{lastName}}',
+          'greet': 'Hello {{firstName}}!',
+          'date.picker': 'select date',
+          'product.online.item.Zero': 'There are no items',
+          'product.online.item.One': 'There is 1 item',
+          'product.online.item.More': 'There are {{count}} items',
+          'user.contact.Male': 'Hi,Mr {{lastName}}',
+          'user.contact.Female': 'Hi,Mrs {{lastName}}',
+          'product.instock': 'surplus goods {{count}}'
         },
         'zh_CN': {
           'hello': '你好！',
-          'greet': '你好 {{firstName}}',
+          'notice': '''这是  
+一个  
+多行文本的例子。''',
+          'greet': '你好{{firstName}}！',
           'date.picker': '选择日期',
-          'notice': '''这是
-一个
-多行文本。''',
-          'item.zero': '没有数据',
-          'item.one': '{{count}}条数据',
-          'item.more': '{{count}}条数据',
-          'contact.male': '{{lastName}}先生',
-          'contact.female': '{{lastName}}女士',
-        },
+          'product.online.item.Zero': '没有数据',
+          'product.online.item.One': '{{count}}条数据',
+          'product.online.item.More': '{{count}}条数据',
+          'user.contact.Male': '{{lastName}}{{firstName}}先生，您好',
+          'user.contact.Female': '{{lastName}}女士，您好',
+          'product.instock': '库存{{count}}'
+        }
       };
-
   static String get hello => 'hello'.tr;
   static String get notice => 'notice'.tr;
-  static String greet(String firstName) => 'greet'.trMap({
+  static String greet(
+    String firstName,
+  ) =>
+      'greet'.trMap({
         'firstName': firstName,
       });
-  static L_Date get date => L_Date();
+  static L_date get date => L_date();
+  static L_user get user => L_user();
+  static L_product get product => L_product();
+}
 
-  static String item(int count) {
-    if (count == 0) {
-      return 'item.zero'.tr;
-    } else if (count == 1) {
-      return 'item.one'.trMap({
-        'count': count.toString(),
-      });
-    } else {
-      return 'item.more'.trMap({
-        'count': count.toString(),
+class L_date {
+  static final L_date _singleton = L_date._internal();
+  factory L_date() {
+    return _singleton;
+  }
+  L_date._internal();
+  String get picker => 'date.picker'.tr;
+}
+
+class L_user {
+  static final L_user _singleton = L_user._internal();
+  factory L_user() {
+    return _singleton;
+  }
+  L_user._internal();
+  String contact(
+    Gender gender,
+    String lastName,
+    String firstName,
+  ) {
+    if (gender == Gender.Male) {
+      return 'user.contact.Male'.trMap({
+        'gender': gender.toString(),
+        'lastName': lastName,
+        'firstName': firstName,
       });
     }
-  }
-
-  static String contact(Gender gender, String lastName) {
-    if (gender == Gender.Male) {
-      return 'contact.male'.trMap({'lastName': lastName});
-    } else {
-      return 'contact.female'.trMap({'lastName': lastName});
+    if (gender == Gender.Female) {
+      return 'user.contact.Female'.trMap({
+        'gender': gender.toString(),
+        'lastName': lastName,
+        'firstName': firstName,
+      });
     }
   }
 }
 
-final templateRegExp = RegExp(r'\{\{(\w+)\}\}');
+class L_product {
+  static final L_product _singleton = L_product._internal();
+  factory L_product() {
+    return _singleton;
+  }
+  L_product._internal();
+  String instock(
+    int count,
+  ) =>
+      'product.instock'.trMap({
+        'count': count.toString(),
+      });
+  L_product_online get online => L_product_online();
+}
+
+class L_product_online {
+  static final L_product_online _singleton = L_product_online._internal();
+  factory L_product_online() {
+    return _singleton;
+  }
+  L_product_online._internal();
+  String item(
+    int count,
+  ) {
+    if (count == 0) {
+      return 'product.online.item.Zero'.trMap({
+        'count': count.toString(),
+      });
+    } else if (count == 1) {
+      return 'product.online.item.One'.trMap({
+        'count': count.toString(),
+      });
+    } else {
+      return 'product.online.item.More'.trMap({
+        'count': count.toString(),
+      });
+    }
+  }
+}
+
+enum Gender { Male, Female }
 
 extension CustomTrans on String {
   String trMap(Map<String, String> map) {
-    var text = tr; // 'Hello {{firstName}}' || '你好 {{firstName}}'
-    templateRegExp.allMatches(text).map((e) => e.group(1)).forEach((element) {
-      text = text.replaceAll('{{${element}}}', map[element]);
+    var text = tr;
+    map.forEach((key, value) {
+      if (value != null) {
+        text = text.replaceAll('{{${key}}}', value);
+      }
     });
     return text;
   }
 }
-
-class L_Date {
-  String get picker => 'date.picker'.tr;
-}
-
-enum Gender { Male, Female }

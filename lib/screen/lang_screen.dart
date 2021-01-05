@@ -70,7 +70,7 @@ class LangScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Text('item.zero', style: TextStyle(fontWeight: FontWeight.bold),),
-                Text(L.item(0)),
+                Text(L.product.online.item(0)),
               ],
             ),
             SizedBox(height: 20),
@@ -78,7 +78,7 @@ class LangScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Text('item.one', style: TextStyle(fontWeight: FontWeight.bold),),
-                Text(L.item(1)),
+                Text(L.product.online.item(1)),
               ],
             ),
             SizedBox(height: 20),
@@ -86,7 +86,7 @@ class LangScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Text('item.more', style: TextStyle(fontWeight: FontWeight.bold),),
-                Text(L.item(100)),
+                Text(L.product.online.item(100)),
               ],
             ),
             SizedBox(height: 20),
@@ -94,14 +94,14 @@ class LangScreen extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Text('contact(Gender.Male, lastName)', style: TextStyle(fontWeight: FontWeight.bold),),
-                Text(L.contact(Gender.Male, 'Li')),
+                Text(L.user.contact(Gender.Male, 'Li', 'yuri')),
               ],
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Text('contact(Gender.Female, lastName)', style: TextStyle(fontWeight: FontWeight.bold),),
-                Text(L.contact(Gender.Female, 'Marks')),
+                Text(L.user.contact(Gender.Female, 'Marks', null)),
               ],
             ),
           ],

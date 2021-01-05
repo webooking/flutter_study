@@ -189,6 +189,8 @@ static String get hello => 'hello'.tr;
 | contact(Gender.male)   | enumeration                                                  | Mr {{lastName}}                          | {{lastName}}先生                       |
 | contact(Gender.female) |                                                              | Mrs {{lastName}}                         | {{lastName}}女士                       |
 
+![image-20210101001042102](/image-20210101001042102.png)
+
 ### 5.3.2 dart-i18n-template-code
 
 ```
@@ -289,15 +291,11 @@ enum Gender { Male, Female }
 
 ### 5.3.3 parse csv to dart-i18n-template-code
 
+![image-20210103022349117](/image-20210103022349117.png)
 
 
 
-
-
-
-
-
-
+![image-20210105020311242](/image-20210105020311242.png)
 
 
 
