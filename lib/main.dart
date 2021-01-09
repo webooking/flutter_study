@@ -18,6 +18,6 @@ void main() {
     ],
     translations: L(),
     getPages: pages,
-    initialRoute: RouteNames.LangScreen,
+    initialRoute: RouteNames.SplashScreen,
   ));
 }

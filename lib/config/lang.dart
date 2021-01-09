@@ -7,12 +7,13 @@ class L extends Translations {
     'en_US': 'English',
     'zh_CN': '简体中文',
   };
-  static final defaultLocale = Locale('en', 'US');
+  static final defaultLocale = window.locale;
   static final fallbackLocale = Locale('en', 'US');
 
   @override
   Map<String, Map<String, String>> get keys => {
         'en_US': {
+          'button.bt_continue': 'Continue',
           'hello': 'hello!',
           'notice': '''This is  
 a multiline 
@@ -27,6 +28,7 @@ example.''',
           'product.instock': 'surplus goods {{count}}'
         },
         'zh_CN': {
+          'button.bt_continue': '点击，进入app',
           'hello': '你好！',
           'notice': '''这是  
 一个  
@@ -41,6 +43,7 @@ example.''',
           'product.instock': '库存{{count}}'
         }
       };
+  static L_button get button => L_button();
   static String get hello => 'hello'.tr;
   static String get notice => 'notice'.tr;
   static String greet(
@@ -52,6 +55,15 @@ example.''',
   static L_date get date => L_date();
   static L_user get user => L_user();
   static L_product get product => L_product();
+}
+
+class L_button {
+  static final L_button _singleton = L_button._internal();
+  factory L_button() {
+    return _singleton;
+  }
+  L_button._internal();
+  String get bt_continue => 'button.bt_continue'.tr;
 }
 
 class L_date {
