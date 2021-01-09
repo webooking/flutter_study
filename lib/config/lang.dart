@@ -28,7 +28,7 @@ example.''',
           'product.instock': 'surplus goods {{count}}'
         },
         'zh_CN': {
-          'button.bt_continue': '点击，进入app',
+          'button.bt_continue': '马上体验',
           'hello': '你好！',
           'notice': '''这是  
 一个  

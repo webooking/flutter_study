@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_study/config/lang.dart';
+import 'package:flutter_study/config/theme.dart';
 import 'package:get/get.dart';
+import 'package:get_storage/get_storage.dart';
 
 import 'config/routes.dart';
 
-void main() {
+Future<void> main() async {
+  await GetStorage.init();
+
   runApp(GetMaterialApp(
     debugShowCheckedModeBanner: false,
     locale: L.defaultLocale,
@@ -17,7 +21,8 @@ void main() {
       GlobalCupertinoLocalizations.delegate,
     ],
     translations: L(),
+    theme: theme(),
     getPages: pages,
-    initialRoute: RouteNames.SplashScreen,
+    initialRoute: RouteNames.initialRoute,
   ));
 }

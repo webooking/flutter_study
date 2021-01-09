@@ -32,6 +32,7 @@ dependencies:
   # intelligent dependency injection
   # route management
   get: ^3.24.0
+  get_storage: ^1.4.0
   flutter_svg: ^0.19.2+1
   flutter_swiper: ^1.1.6
 
