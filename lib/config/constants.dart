@@ -6,5 +6,3 @@ const kTextColor = Color(0xFF757575);
 /// storage
 const kAccessToken = 'accessToken';
 const kRefreshToken = 'refreshToken';
-
-/// regex

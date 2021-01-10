@@ -14,49 +14,125 @@ class L extends Translations {
   Map<String, Map<String, String>> get keys => {
         'en_US': {
           'button.bt_continue': 'Continue',
-          'hello': 'hello!',
-          'notice': '''This is  
-a multiline 
-example.''',
-          'greet': 'Hello {{firstName}}!',
-          'date.picker': 'select date',
-          'product.online.item.Zero': 'There are no items',
-          'product.online.item.One': 'There is 1 item',
-          'product.online.item.More': 'There are {{count}} items',
-          'user.contact.Male': 'Hi,Mr {{lastName}}',
-          'user.contact.Female': 'Hi,Mrs {{lastName}}',
-          'product.instock': 'surplus goods {{count}}'
+          'signIn.greet.appBar': 'Sign in',
+          'signIn.greet.title': 'Welcome Back',
+          'signIn.greet.subtitle': 'Sign in with your email and password',
+          'signIn.btn': 'SignIn',
+          'signIn.email.labelText': 'Email',
+          'signIn.email.hintText': 'Your Email',
+          'signIn.email.valid.empty': 'email cannot be empty',
+          'signIn.email.valid.format': 'email format error',
+          'signIn.password.labelText': 'Password',
+          'signIn.password.hintText': 'Your Password',
+          'signIn.password.valid.empty': 'password cannot be empty',
+          'signIn.password.valid.format': '''1. Minimum 1 Upper case
+2. Minimum 1 lowercase
+3. Minimum 1 Numeric Number
+4. Minimum 1 Special Character(! @ # \$ & * ~ )
+5. Allow [6,16] characters''',
+          'signIn.hint.forgetPassword': 'Forget password?',
+          'signIn.hint.noAccount': 'Does not have account?',
+          'signIn.hint.signUp': 'Sign Up',
         },
         'zh_CN': {
           'button.bt_continue': '马上体验',
-          'hello': '你好！',
-          'notice': '''这是  
-一个  
-多行文本的例子。''',
-          'greet': '你好{{firstName}}！',
-          'date.picker': '选择日期',
-          'product.online.item.Zero': '没有数据',
-          'product.online.item.One': '{{count}}条数据',
-          'product.online.item.More': '{{count}}条数据',
-          'user.contact.Male': '{{lastName}}{{firstName}}先生，您好',
-          'user.contact.Female': '{{lastName}}女士，您好',
-          'product.instock': '库存{{count}}'
+          'signIn.greet.appBar': '登录',
+          'signIn.greet.title': '欢迎使用',
+          'signIn.greet.subtitle': '请使用邮箱和密码登录',
+          'signIn.btn': '登录',
+          'signIn.email.labelText': '邮箱',
+          'signIn.email.hintText': '请输入您的邮箱',
+          'signIn.email.valid.empty': '邮箱不能为空',
+          'signIn.email.valid.format': '邮箱格式错误',
+          'signIn.password.labelText': '密码',
+          'signIn.password.hintText': '请输入密码',
+          'signIn.password.valid.empty': '密码不能为空',
+          'signIn.password.valid.format': '''1. 至少一个大写字母
+2. 至少一个小写字母
+3. 至少一个数字
+4. 至少一个特殊字符(! @ # \$ & * ~ )
+5. 允许输入[6,16]个字符''',
+          'signIn.hint.forgetPassword': '忘记密码？',
+          'signIn.hint.noAccount': '还没有账号？',
+          'signIn.hint.signUp': '注册',
         }
       };
   static L_button get button => L_button();
-  static String get hello => 'hello'.tr;
-  static String get notice => 'notice'.tr;
-  static String greet(
-    String firstName,
-  ) =>
-      'greet'.trMap({
-        'firstName': firstName,
-      });
-  static L_date get date => L_date();
-  static L_user get user => L_user();
-  static L_product get product => L_product();
+  static L_signIn get signIn => L_signIn();
 }
+class L_signIn{
+  static final L_signIn _singleton = L_signIn._internal();
+  factory L_signIn() {
+    return _singleton;
+  }
+  L_signIn._internal();
+  L_signIn_greet get greet => L_signIn_greet();
+  String get btn => 'signIn.btn'.tr;
+  L_signIn_email get email => L_signIn_email();
+  L_signIn_password get password => L_signIn_password();
+  L_signIn_hint get hint => L_signIn_hint();
+}
+class L_signIn_hint{
+  static final L_signIn_hint _singleton = L_signIn_hint._internal();
+  factory L_signIn_hint() {
+    return _singleton;
+  }
+  L_signIn_hint._internal();
 
+  String get forgetPassword => 'signIn.hint.forgetPassword'.tr;
+  String get noAccount => 'signIn.hint.noAccount'.tr;
+  String get signUp => 'signIn.hint.signUp'.tr;
+}
+class L_signIn_password{
+  static final L_signIn_password _singleton = L_signIn_password._internal();
+  factory L_signIn_password() {
+    return _singleton;
+  }
+  L_signIn_password._internal();
+  L_signIn_password_valid get valid => L_signIn_password_valid();
+
+  String get labelText => 'signIn.password.labelText'.tr;
+  String get hintText => 'signIn.password.hintText'.tr;
+}
+class L_signIn_password_valid{
+  static final L_signIn_password_valid _singleton = L_signIn_password_valid._internal();
+  factory L_signIn_password_valid() {
+    return _singleton;
+  }
+  L_signIn_password_valid._internal();
+  String get empty => 'signIn.password.valid.empty'.tr;
+  String get format => 'signIn.password.valid.format'.tr;
+}
+class L_signIn_email{
+  static final L_signIn_email _singleton = L_signIn_email._internal();
+  factory L_signIn_email() {
+    return _singleton;
+  }
+  L_signIn_email._internal();
+  L_signIn_email_valid get valid => L_signIn_email_valid();
+
+  String get labelText => 'signIn.email.labelText'.tr;
+  String get hintText => 'signIn.email.hintText'.tr;
+}
+class L_signIn_email_valid{
+  static final L_signIn_email_valid _singleton = L_signIn_email_valid._internal();
+  factory L_signIn_email_valid() {
+    return _singleton;
+  }
+  L_signIn_email_valid._internal();
+  String get empty => 'signIn.email.valid.empty'.tr;
+  String get format => 'signIn.email.valid.format'.tr;
+}
+class L_signIn_greet{
+  static final L_signIn_greet _singleton = L_signIn_greet._internal();
+  factory L_signIn_greet() {
+    return _singleton;
+  }
+  L_signIn_greet._internal();
+  String get appBar => 'signIn.greet.appBar'.tr;
+  String get title => 'signIn.greet.title'.tr;
+  String get subtitle => 'signIn.greet.subtitle'.tr;
+}
 class L_button {
   static final L_button _singleton = L_button._internal();
   factory L_button() {
@@ -65,85 +141,6 @@ class L_button {
   L_button._internal();
   String get bt_continue => 'button.bt_continue'.tr;
 }
-
-class L_date {
-  static final L_date _singleton = L_date._internal();
-  factory L_date() {
-    return _singleton;
-  }
-  L_date._internal();
-  String get picker => 'date.picker'.tr;
-}
-
-class L_user {
-  static final L_user _singleton = L_user._internal();
-  factory L_user() {
-    return _singleton;
-  }
-  L_user._internal();
-  String contact(
-    Gender gender,
-    String lastName,
-    String firstName,
-  ) {
-    if (gender == Gender.Male) {
-      return 'user.contact.Male'.trMap({
-        'gender': gender.toString(),
-        'lastName': lastName,
-        'firstName': firstName,
-      });
-    }
-    if (gender == Gender.Female) {
-      return 'user.contact.Female'.trMap({
-        'gender': gender.toString(),
-        'lastName': lastName,
-        'firstName': firstName,
-      });
-    }
-  }
-}
-
-class L_product {
-  static final L_product _singleton = L_product._internal();
-  factory L_product() {
-    return _singleton;
-  }
-  L_product._internal();
-  String instock(
-    int count,
-  ) =>
-      'product.instock'.trMap({
-        'count': count.toString(),
-      });
-  L_product_online get online => L_product_online();
-}
-
-class L_product_online {
-  static final L_product_online _singleton = L_product_online._internal();
-  factory L_product_online() {
-    return _singleton;
-  }
-  L_product_online._internal();
-  String item(
-    int count,
-  ) {
-    if (count == 0) {
-      return 'product.online.item.Zero'.trMap({
-        'count': count.toString(),
-      });
-    } else if (count == 1) {
-      return 'product.online.item.One'.trMap({
-        'count': count.toString(),
-      });
-    } else {
-      return 'product.online.item.More'.trMap({
-        'count': count.toString(),
-      });
-    }
-  }
-}
-
-enum Gender { Male, Female }
 
 extension CustomTrans on String {
   String trMap(Map<String, String> map) {

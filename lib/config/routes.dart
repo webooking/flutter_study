@@ -1,5 +1,6 @@
 import 'package:flutter_study/config/constants.dart';
 import 'package:flutter_study/controller/CounterController.dart';
+import 'package:flutter_study/controller/UserSignInController.dart';
 import 'package:flutter_study/screen/HomeScreen.dart';
 import 'package:flutter_study/screen/SplashScreen.dart';
 import 'package:flutter_study/screen/counter/counter_child_screen.dart';
@@ -15,7 +16,7 @@ abstract class RouteNames {
   static const SignInScreen = '/signIn';
   static const HomeScreen = '/home';
 
-  static String get initialRoute => GetStorage().hasData(kAccessToken)? HomeScreen : SignInScreen;
+  static String get initialRoute => GetStorage().hasData('accessToken')? HomeScreen : SplashScreen;
 }
 
 final pages = [
@@ -35,6 +36,7 @@ final pages = [
   GetPage(
     name: RouteNames.SignInScreen,
     page: () => SignInScreen(),
+    binding: BindingsBuilder<UserSignInController>(() => Get.lazyPut(() => UserSignInController())),
   ),
   GetPage(
     name: RouteNames.HomeScreen,
