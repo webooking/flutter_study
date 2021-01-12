@@ -46,14 +46,19 @@ class SignInForm extends StatelessWidget {
                   ),
                 ),
                 SizedBox(width: S.x(20)),
-                Text(
-                  L.signIn.hint.signUp,
-                  style: TextStyle(
-                    fontSize: 18,
-                    color: kPrimaryColor,
-                    decoration: TextDecoration.underline,
+                GestureDetector(
+                  onTap: () {
+                    Get.toNamed<void>('/signUp');
+                  },
+                  child: Text(
+                    L.signIn.hint.signUp,
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: kPrimaryColor,
+                      decoration: TextDecoration.underline,
+                    ),
                   ),
-                ),
+                )
               ],
             ),
           ],
@@ -68,7 +73,7 @@ class SignInForm extends StatelessWidget {
     validator: (value) {
       if (value.isEmpty) {
         return L.signIn.password.valid.empty;
-      } else if (!RegexUtil.passwordRegex.hasMatch(value)) {
+      } else if (!RegexUtil.password.hasMatch(value)) {
         return L.signIn.password.valid.format;
       }
       return null;
@@ -90,7 +95,7 @@ class SignInForm extends StatelessWidget {
     validator: (value) {
       if (value.isEmpty) {
         return L.signIn.email.valid.empty;
-      } else if (!RegexUtil.emailRegex.hasMatch(value)) {
+      } else if (!RegexUtil.email.hasMatch(value)) {
         return L.signIn.email.valid.format;
       }
       return null;

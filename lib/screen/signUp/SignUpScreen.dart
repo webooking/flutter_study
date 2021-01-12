@@ -2,26 +2,26 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_study/config/lang.dart';
 import 'package:flutter_study/config/size_config.dart';
-import 'package:flutter_study/screen/signIn/SignInForm.dart';
+import 'package:flutter_study/screen/signUp/SignUpForm.dart';
 
-class SignInScreen extends StatelessWidget {
+class SignUpScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(L.signIn.appBar),
+        title: Text(L.signUp.appBar),
       ),
       body: SafeArea(
         child: Column(
           children: [
-            Text(L.signIn.title,
+            Text(L.signUp.title,
             style: TextStyle(
               fontSize: 24,
               fontWeight: FontWeight.bold,
             )),
-            Text(L.signIn.subtitle),
+            Text(L.signUp.subtitle),
             SizedBox(height: S.y(50)),
-            SignInForm(),
+            SignUpForm(),
           ],
         ),
       ),
