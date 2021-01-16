@@ -1,15 +1,17 @@
 import 'package:flutter_study/config/constants.dart';
 import 'package:flutter_study/controller/CompleteProfileController.dart';
 import 'package:flutter_study/controller/CounterController.dart';
+import 'package:flutter_study/controller/OtpController.dart';
 import 'package:flutter_study/controller/UserSignInController.dart';
 import 'package:flutter_study/controller/UserSignUpController.dart';
-import 'package:flutter_study/screen/HomeScreen.dart';
+import 'package:flutter_study/screen/home/HomeScreen.dart';
 import 'package:flutter_study/screen/SplashScreen.dart';
 import 'package:flutter_study/screen/counter/counter_child_screen.dart';
 import 'package:flutter_study/screen/counter/counter_screen.dart';
 import 'package:flutter_study/screen/signIn/SignInScreen.dart';
 import 'package:flutter_study/screen/signUp/SignUpScreen.dart';
 import 'package:flutter_study/screen/signUp/complete/CompleteProfileScreen.dart';
+import 'package:flutter_study/screen/signUp/complete/otp/OtpScreen.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -20,6 +22,7 @@ abstract class RouteNames {
   static const SignInScreen = '/signIn';
   static const SignUpScreen = '/signUp';
   static const CompleteProfileScreen = '/signUp/complete/profile';
+  static const OtpScreen = '/signUp/complete/profile/otp';
   static const HomeScreen = '/home';
 
   static String get initialRoute => GetStorage().hasData('accessToken')? HomeScreen : SplashScreen;
@@ -58,5 +61,9 @@ final pages = [
     page: () => CompleteProfileScreen(),
     binding: BindingsBuilder<CompleteProfileController>(() => Get.lazyPut(() => CompleteProfileController())),
   ),
-
+  GetPage(
+    name: RouteNames.OtpScreen,
+    page: () => OtpScreen(),
+    binding: BindingsBuilder<OtpController>(() => Get.lazyPut(() => OtpController())),
+  ),
 ];

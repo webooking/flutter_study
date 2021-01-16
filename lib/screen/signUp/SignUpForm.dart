@@ -60,6 +60,7 @@ class SignUpForm extends StatelessWidget {
 
   TextFormField _passwordFormField(UserSignUpController controller) => TextFormField(
     obscureText: controller.hidePassword.value,
+    onChanged: (newValue) => controller.password.value = newValue,
     onSaved: (newValue) => controller.password.value = newValue,
     validator: (value) {
       if (value.isEmpty) {

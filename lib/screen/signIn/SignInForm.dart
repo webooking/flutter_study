@@ -24,7 +24,7 @@ class SignInForm extends StatelessWidget {
             Obx(() => _passwordFormField(controller)),
             SizedBox(height: S.y(20)),
             Text(
-              L.signIn.hint.forgetPassword,
+              L.signIn.hint.forgotPassword,
               style: TextStyle(
                 fontSize: 18,
                 decoration: TextDecoration.underline,

@@ -14,8 +14,7 @@ class CompleteProfileController extends GetxController{
   void submit(){
     if(formKey.currentState.validate()){
       formKey.currentState.save();
-      GetStorage().write(kAccessToken, 'a03c3b36-5259-11eb-ae93-0242ac130002');
-      Get.offAllNamed<void>(RouteNames.HomeScreen);
+      Get.toNamed<dynamic>(RouteNames.OtpScreen, arguments: phone.value);
     }
   }
 }

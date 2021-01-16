@@ -42,10 +42,17 @@ class SplashScreen extends StatelessWidget {
           S.y(500.0),
         )),
         child: Swiper(
+          duration: 2000,
           itemBuilder: (BuildContext context, int index) {
-            return SvgPicture.asset(
-              SplashData.data[index],
-            );
+            return TweenAnimationBuilder<Color>(
+                tween: ColorTween(begin: Colors.white, end: Colors.orangeAccent),
+                duration: Duration(milliseconds: 2000),
+                builder: (context, value, child) {
+                  return SvgPicture.asset(
+                    SplashData.data[index],
+                    color: value,
+                  );
+                });
           },
           itemCount: 3,
           autoplay: true,

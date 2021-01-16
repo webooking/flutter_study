@@ -20,7 +20,7 @@ class CompleteProfileForm  extends StatelessWidget{
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             _firstNameFormField(controller),
-            SizedBox(height: S.y(30)),
+            SizedBox(height: S.y(20)),
             _lastNameFormField(controller),
             SizedBox(height: S.y(20)),
             _phoneFormField(controller),
