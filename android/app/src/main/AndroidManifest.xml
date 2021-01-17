@@ -3,6 +3,10 @@
    <application
         android:label="hooray"
         android:icon="@mipmap/ic_launcher">
+       <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+       <uses-permission android:name="android.permission.ACCESS_BACKGROUND_LOCATION" />
+       <!-- TODO: Add your API key here -->
+       <!-- <meta-data android:name="com.google.android.geo.API_KEY" android:value="YOUR_GOOGLE_API_KEY"/>-->
         <activity
             android:name=".MainActivity"
             android:launchMode="singleTop"

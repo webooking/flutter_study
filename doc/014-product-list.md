@@ -1,24 +1,33 @@
-import 'dart:ui';
+---
+typora-root-url: ./assets
+---
 
-import 'package:flutter/material.dart';
-import 'package:flutter_study/config/size_config.dart';
-import 'package:geocoding/geocoding.dart';
-import 'package:geolocator/geolocator.dart';
+# 1 brief profile
 
-const kPrimaryColor = Color(0xFFFF7643);
-const kTextColor = Color(0xFF757575);
+<img src="/image-20210117000659290.png" alt="image-20210117000659290" style="zoom:50%;" />
 
-/// storage
-const kAccessToken = 'accessToken';
-const kRefreshToken = 'refreshToken';
+# 2 city location
 
-OutlineInputBorder outlineInputBorder() {
-  return OutlineInputBorder(
-    borderRadius: BorderRadius.circular(S.x(15)),
-    borderSide: BorderSide(color: kTextColor),
-  );
-}
+- Get the current location of the device
+- Translate an address to geo coordinates and vice versa
 
+## 2.1 location
+
+### 2.1.1 dependency
+
+```
+geolocator: ^6.1.13
+```
+
+### 2.1.2 Android and iOS settings
+
+https://pub.dev/packages/geolocator
+
+### 2.1.3 source code
+
+`lib/config/constants.dart`
+
+```
 Future<Position> _determinePosition() async {
   bool serviceEnabled;
   LocationPermission permission;
@@ -43,7 +52,21 @@ Future<Position> _determinePosition() async {
 
   return await Geolocator.getCurrentPosition();
 }
+```
 
+
+
+## 2.2 city name
+
+### 2.2.1 dependency
+
+```
+geocoding: ^1.0.5
+```
+
+### 2.2.2  source code
+
+```
 Future<String> city() async {
   final position = await _determinePosition();
   final placemarks = await placemarkFromCoordinates(position.latitude, position.longitude, localeIdentifier: window.locale.toString());
@@ -53,3 +76,11 @@ Future<String> city() async {
   }
   return null;
 }
+```
+
+
+
+
+
+
+
