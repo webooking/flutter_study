@@ -7,11 +7,9 @@ import 'package:flutter_study/config/size_config.dart';
 import 'package:flutter_study/controller/UserSignInController.dart';
 import 'package:get/get.dart';
 
-class SignInForm extends StatelessWidget {
+class SignInForm extends GetView<UserSignInController> {
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<UserSignInController>();
-
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 30),
       child: Form(

@@ -23,6 +23,6 @@ Future<void> main() async {
     translations: L(),
     theme: theme(),
     getPages: pages,
-    initialRoute: RouteNames.HomeScreen,
+    initialRoute: RouteNames.initialRoute,
   ));
 }

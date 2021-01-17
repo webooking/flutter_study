@@ -89,3 +89,95 @@ FutureBuilder(
     }
 )
 ```
+
+# 3 refactoring
+
+## 3.1 navigation
+
+```
+GetPage(
+    name: RouteNames.SignUpScreen,
+    page: () => SignUpScreen(),
+    binding: BindingsBuilder<UserSignUpController>(() => Get.lazyPut(() => UserSignUpController())),
+    children: [
+      GetPage(
+        name: '/complete/profile',
+        page: () => CompleteProfileScreen(),
+        binding: BindingsBuilder<CompleteProfileController>(() => Get.lazyPut(() => CompleteProfileController())),
+        children: [
+          GetPage(
+            name: '/otp',
+            page: () => OtpScreen(),
+            binding: BindingsBuilder<OtpController>(() => Get.lazyPut(() => OtpController())),
+          ),
+        ],
+      ),
+    ],
+  ),
+```
+
+## 3.2 GetView\<Controller\>
+
+- `GetView` is a `StatelessWidget`
+- has a getter `controller` for the registered `Controller`
+
+```
+GetPage(
+    name: RouteNames.CounterScreen,
+    page: () => CounterScreen(),
+    binding: BindingsBuilder<CounterController>(() => Get.lazyPut(() => CounterController())),
+)
+```
+
+![image-20210117121440792](/image-20210117121440792.png)
+
+## 3.3 Pass arguments to a named route
+
+### 3.3.1 parent controller
+
+```
+# CompleteProfileController
+Get.toNamed<dynamic>(RouteNames.OtpScreen, arguments: phone.value);
+```
+
+### 3.3.2 routes
+
+```
+GetPage(
+  name: '/complete/profile',
+  page: () => CompleteProfileScreen(),
+  binding: BindingsBuilder<CompleteProfileController>(() => Get.lazyPut(() => CompleteProfileController())),
+  children: [
+    GetPage(
+      name: '/otp',
+      page: () => OtpScreen(
+        phone: Get.arguments as String
+      ),
+      binding: BindingsBuilder<OtpController>(() => Get.lazyPut(() => OtpController())),
+    ),
+  ],
+),
+```
+
+### 3.3.3 child screen
+
+```
+class OtpScreen extends StatelessWidget {
+  final String phone;
+
+  const OtpScreen({
+    Key key,
+    @required this.phone,
+  }) : super(key: key);
+  
+  @override
+  Widget build(BuildContext context) {
+    ...
+  }
+}
+```
+
+
+
+
+

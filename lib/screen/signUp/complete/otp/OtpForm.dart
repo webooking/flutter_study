@@ -7,11 +7,9 @@ import 'package:flutter_study/config/size_config.dart';
 import 'package:flutter_study/controller/OtpController.dart';
 import 'package:get/get.dart';
 
-class OtpForm extends StatelessWidget {
+class OtpForm extends GetView<OtpController> {
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<OtpController>();
-
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 30),
       child: Form(

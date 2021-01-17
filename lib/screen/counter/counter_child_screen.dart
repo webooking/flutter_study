@@ -2,11 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_study/controller/CounterController.dart';
 import 'package:get/get.dart';
 
-class CounterChildScreen extends StatelessWidget {
+class CounterChildScreen extends GetView<CounterController> {
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<CounterController>();
-
     return Scaffold(
       body: Center(
         child: Column(

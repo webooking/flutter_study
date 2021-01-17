@@ -6,10 +6,15 @@ import 'package:flutter_study/screen/signUp/complete/otp/OtpForm.dart';
 import 'package:get/get.dart';
 
 class OtpScreen extends StatelessWidget {
+  final String phone;
+
+  const OtpScreen({
+    Key key,
+    @required this.phone,
+  }) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
-    final phone = Get.arguments as String;
-
     return Scaffold(
       appBar: AppBar(
         title: Text(L.signUp.appBar),
@@ -45,7 +50,7 @@ class OtpScreen extends StatelessWidget {
     );
   }
 
-  Row _timer(){
+  Row _timer() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [

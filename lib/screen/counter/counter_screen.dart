@@ -3,11 +3,9 @@ import 'package:flutter_study/config/routes.dart';
 import 'package:flutter_study/controller/CounterController.dart';
 import 'package:get/get.dart';
 
-class CounterScreen extends StatelessWidget {
+class CounterScreen extends GetView<CounterController> {
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<CounterController>();
-
     return Scaffold(
       appBar: AppBar(
         title: Obx(() => Text('Clicks: ${controller.count}')),

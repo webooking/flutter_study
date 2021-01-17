@@ -6,12 +6,10 @@ import 'package:flutter_study/config/size_config.dart';
 import 'package:flutter_study/controller/CompleteProfileController.dart';
 import 'package:get/get.dart';
 
-class CompleteProfileForm  extends StatelessWidget{
+class CompleteProfileForm  extends GetView<CompleteProfileController>{
 
   @override
   Widget build(BuildContext context) {
-    final controller = Get.find<CompleteProfileController>();
-
     return Padding(
       padding: EdgeInsets.symmetric(horizontal: 30),
       child: Form(
