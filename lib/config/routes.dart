@@ -1,5 +1,6 @@
 import 'package:flutter_study/controller/CompleteProfileController.dart';
 import 'package:flutter_study/controller/CounterController.dart';
+import 'package:flutter_study/controller/HomeController.dart';
 import 'package:flutter_study/controller/OtpController.dart';
 import 'package:flutter_study/controller/UserSignInController.dart';
 import 'package:flutter_study/controller/UserSignUpController.dart';
@@ -52,6 +53,8 @@ final pages = [
   GetPage(
     name: RouteNames.HomeScreen,
     page: () => HomeScreen(),
+    binding: BindingsBuilder<HomeController>(() => Get.lazyPut(() => HomeController())),
+
   ),
   GetPage(
     name: RouteNames.SignUpScreen,
