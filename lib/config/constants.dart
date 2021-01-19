@@ -12,6 +12,39 @@ const kTextColor = Color(0xFF757575);
 const kAccessToken = 'accessToken';
 const kRefreshToken = 'refreshToken';
 
+const splashData = [
+  'assets/images/splash-1.svg',
+  'assets/images/splash-2.svg',
+  'assets/images/splash-3.svg',
+];
+
+const categoriesData = [
+  {
+    'name': 'Flight',
+    'svg': 'assets/images/flight.svg',
+    'backgroundColor': Color(0xFF5E64F4),
+    'svgColor': Colors.white,
+  },
+  {
+    'name': 'Hotel',
+    'svg': 'assets/images/hotel.svg',
+    'backgroundColor': Color(0xFFFF665B),
+    'svgColor': Colors.white,
+  },
+  {
+    'name': 'Bus',
+    'svg': 'assets/images/bus.svg',
+    'backgroundColor': Color(0xFF00CFFF),
+    'svgColor': Colors.white,
+  },
+  {
+    'name': 'More',
+    'svg': 'assets/images/more.svg',
+    'backgroundColor': Color(0xFFFF8945),
+    'svgColor': Colors.white,
+  },
+];
+
 OutlineInputBorder outlineInputBorder() {
   return OutlineInputBorder(
     borderRadius: BorderRadius.circular(S.x(15)),
@@ -35,8 +68,7 @@ Future<Position> _determinePosition() async {
 
   if (permission == LocationPermission.denied) {
     permission = await Geolocator.requestPermission();
-    if (permission != LocationPermission.whileInUse &&
-        permission != LocationPermission.always) {
+    if (permission != LocationPermission.whileInUse && permission != LocationPermission.always) {
       return Future.error('Location permissions are denied (actual value: $permission).');
     }
   }
@@ -47,7 +79,7 @@ Future<Position> _determinePosition() async {
 Future<String> city() async {
   final position = await _determinePosition();
   final placemarks = await placemarkFromCoordinates(position.latitude, position.longitude, localeIdentifier: window.locale.toString());
-  if(placemarks != null && placemarks.isNotEmpty){
+  if (placemarks != null && placemarks.isNotEmpty) {
     final city = placemarks.first;
     return '${city.locality}, ${city.country}';
   }

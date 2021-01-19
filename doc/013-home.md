@@ -247,7 +247,7 @@ class HomeScreen extends GetView<HomeController> {
 ## 4.3 custom drawer icon
 
 ```
-icon: SvgPicture.asset('assets/images/drawer.svg')
+icon: SvgPicture.asset('assets/icons/drawer.svg')
 ```
 
 ## 4.4 right drawer
@@ -276,6 +276,149 @@ body: SafeArea(
     ),
   ),
 ),
+```
+
+
+
+# 6 beutify
+
+## 6.1 avatar
+
+```
+IconButton(
+  icon: Container(
+    width: S.x(40),
+    height: S.y(40),
+    clipBehavior: Clip.hardEdge,
+    decoration: BoxDecoration(
+      borderRadius: BorderRadius.circular(16),
+      border: Border.all(
+        color: Color(0xFFD8D8D8),
+      ),
+    ),
+    child: SvgPicture.asset('assets/images/avatar.svg'),
+  ),
+  onPressed: controller.openEndDrawer,
+),
+```
+
+## 6.2 categories
+
+### 6.2.1 config
+
+```
+const categoriesData = [
+  {
+    'name': 'Flight',
+    'svg': 'assets/images/flight.svg',
+    'backgroundColor': Color(0xFF5E64F4),
+    'svgColor': Colors.white,
+  },
+  {
+    'name': 'Hotel',
+    'svg': 'assets/images/hotel.svg',
+    'backgroundColor': Color(0xFFFF665B),
+    'svgColor': Colors.white,
+  },
+  {
+    'name': 'Bus',
+    'svg': 'assets/images/bus.svg',
+    'backgroundColor': Color(0xFF00CFFF),
+    'svgColor': Colors.white,
+  },
+  {
+    'name': 'More',
+    'svg': 'assets/images/more.svg',
+    'backgroundColor': Color(0xFFFF8945),
+    'svgColor': Colors.white,
+  },
+];
+```
+
+
+
+### 6.2.2 widget 
+
+```
+Column(
+  mainAxisAlignment: MainAxisAlignment.center,
+  children: [
+    Container(
+      width: S.x(55),
+      height: S.y(55),
+      padding: EdgeInsets.all(S.x(15)),
+      decoration: BoxDecoration(
+        color: categoriesData[index]['backgroundColor'] as Color,
+        borderRadius: BorderRadius.circular(16),
+      ),
+      child: SvgPicture.asset(
+        categoriesData[index]['svg'] as String,
+        color: categoriesData[index]['svgColor'] as Color,
+      ),
+    ),
+    SizedBox(height: S.y(15),),
+    Text(categoriesData[index]['name'] as String,
+      style: TextStyle(
+        color: Colors.black,
+        fontWeight: FontWeight.bold,
+      ),
+    ),
+  ],
+)
+```
+
+
+
+## 6.3 recommend
+
+```
+Container(
+  margin: EdgeInsets.only(right: 15),
+  padding: EdgeInsets.all(S.x(15)),
+  width: S.x(267),
+  height: S.y(350),
+  decoration: BoxDecoration(
+    borderRadius: BorderRadius.circular(30),
+    border: Border.all(
+      color: Colors.black,
+    ),
+  ),
+  child: Column(
+    children: [
+      Container(
+        width: S.x(243),
+        height: S.y(227),
+        decoration: BoxDecoration(
+          color: Color(0xFFF4F1F1),
+          borderRadius: BorderRadius.circular(30),
+        ),
+        child: SvgPicture.asset('assets/images/splash-1.svg'),
+      ),
+      SizedBox(height: S.y(20)),
+      Text('Explore this magical place in Greece'),
+    ],
+  ),
+)
+```
+
+
+
+## 6.4 search field
+
+```
+TextField(
+  decoration: InputDecoration(
+    hintText: 'Search Hotels, Taxi etc..',
+    prefixIcon: Icon(Icons.search),
+    filled: true,
+    fillColor: Color(0xFFF4F6FE),
+    focusedBorder: OutlineInputBorder(
+      borderRadius: BorderRadius.circular(28),
+      borderSide: BorderSide(color: Color(0xFFF4F6FE)),
+      gapPadding: 10,
+    ),
+  ),
+)
 ```
 
 

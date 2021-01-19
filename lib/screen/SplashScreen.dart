@@ -4,7 +4,6 @@ import 'package:flutter_study/config/constants.dart';
 import 'package:flutter_study/config/lang.dart';
 import 'package:flutter_study/config/routes.dart';
 import 'package:flutter_study/config/size_config.dart';
-import 'package:flutter_study/model/SplashData.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:get/get.dart';
@@ -49,7 +48,7 @@ class SplashScreen extends StatelessWidget {
                 duration: Duration(milliseconds: 2000),
                 builder: (context, value, child) {
                   return SvgPicture.asset(
-                    SplashData.data[index],
+                    splashData[index],
                     color: value,
                   );
                 });

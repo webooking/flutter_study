@@ -39,18 +39,32 @@ List<Widget> recommend() => [
               ...List.generate(
                   3,
                   (index) => Container(
-                    margin: EdgeInsets.only(right: 15),
-                    width: S.x(267),
-                    height: S.y(350),
-                    decoration: BoxDecoration(
-                      color: Color(0xFFF4F1F1),
-                      borderRadius: BorderRadius.circular(30),
-                      border: Border.all(
-                        color: Colors.black,
-                      ),
-                    ),
-                    child: SvgPicture.asset('assets/images/splash-1.svg'),
-                  )),
+                        margin: EdgeInsets.only(right: 15),
+                        padding: EdgeInsets.all(S.x(15)),
+                        width: S.x(267),
+                        height: S.y(350),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(30),
+                          border: Border.all(
+                            color: Colors.black,
+                          ),
+                        ),
+                        child: Column(
+                          children: [
+                            Container(
+                              width: S.x(243),
+                              height: S.y(227),
+                              decoration: BoxDecoration(
+                                color: Color(0xFFF4F1F1),
+                                borderRadius: BorderRadius.circular(30),
+                              ),
+                              child: SvgPicture.asset('assets/images/splash-1.svg'),
+                            ),
+                            SizedBox(height: S.y(20)),
+                            Text('Explore this magical place in Greece'),
+                          ],
+                        ),
+                      )),
             ],
           ),
         ),

@@ -8,6 +8,11 @@ Padding searchField() => Padding(
       prefixIcon: Icon(Icons.search),
       filled: true,
       fillColor: Color(0xFFF4F6FE),
+      focusedBorder: OutlineInputBorder(
+        borderRadius: BorderRadius.circular(28),
+        borderSide: BorderSide(color: Color(0xFFF4F6FE)),
+        gapPadding: 10,
+      ),
     ),
   ),
 );
