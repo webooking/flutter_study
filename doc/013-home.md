@@ -255,3 +255,28 @@ icon: SvgPicture.asset('assets/images/drawer.svg')
 - Widget: endDrawer
 - Icon: actions
 
+# 5 HomeScreen Layout
+
+```
+body: SafeArea(
+  child: Padding(
+    padding: EdgeInsets.symmetric(horizontal: 10),
+    child: SingleChildScrollView(
+      child: Column(
+        children: [
+          ...List.generate(30, (index) => Column(
+            children: [
+              Text('Hi Annie,'),
+              SizedBox(height: S.y(30)),
+            ],
+          )),
+          Text('------end-------'),
+        ],
+      ),
+    ),
+  ),
+),
+```
+
+
+
