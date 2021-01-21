@@ -2,6 +2,7 @@ import 'package:flutter_study/controller/CompleteProfileController.dart';
 import 'package:flutter_study/controller/CounterController.dart';
 import 'package:flutter_study/controller/HomeController.dart';
 import 'package:flutter_study/controller/OtpController.dart';
+import 'package:flutter_study/controller/TodoController.dart';
 import 'package:flutter_study/controller/UserSignInController.dart';
 import 'package:flutter_study/controller/UserSignUpController.dart';
 import 'package:flutter_study/screen/SplashScreen.dart';
@@ -12,6 +13,7 @@ import 'package:flutter_study/screen/signIn/SignInScreen.dart';
 import 'package:flutter_study/screen/signUp/SignUpScreen.dart';
 import 'package:flutter_study/screen/signUp/complete/CompleteProfileScreen.dart';
 import 'package:flutter_study/screen/signUp/complete/otp/OtpScreen.dart';
+import 'package:flutter_study/screen/todo/TodoScreen.dart';
 import 'package:get/get.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -27,8 +29,9 @@ abstract class RouteNames {
   static const OtpScreen = '/signUp/complete/profile/otp';
 
   static const HomeScreen = '/home';
+  static const TodoScreen = '/todo';
 
-  static String get initialRoute => GetStorage().hasData('accessToken')? HomeScreen : SplashScreen;
+  static String get initialRoute => GetStorage().hasData('accessToken') ? HomeScreen : SplashScreen;
 }
 
 final pages = [
@@ -54,7 +57,6 @@ final pages = [
     name: RouteNames.HomeScreen,
     page: () => HomeScreen(),
     binding: BindingsBuilder<HomeController>(() => Get.lazyPut(() => HomeController())),
-
   ),
   GetPage(
     name: RouteNames.SignUpScreen,
@@ -68,14 +70,16 @@ final pages = [
         children: [
           GetPage(
             name: '/otp',
-            page: () => OtpScreen(
-              phone: Get.arguments as String
-            ),
+            page: () => OtpScreen(phone: Get.arguments as String),
             binding: BindingsBuilder<OtpController>(() => Get.lazyPut(() => OtpController())),
           ),
         ],
       ),
     ],
   ),
-
+  GetPage(
+    name: RouteNames.TodoScreen,
+    page: () => TodoScreen(),
+    binding: BindingsBuilder<TodoController>(() => Get.lazyPut(() => TodoController())),
+  ),
 ];

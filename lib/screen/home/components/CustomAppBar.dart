@@ -41,7 +41,7 @@ AppBar customAppBar(HomeController controller) => AppBar(
                 color: Color(0xFFD8D8D8),
               ),
             ),
-            child: SvgPicture.asset('assets/images/avatar.svg'),
+            child: SvgPicture.asset('assets/icons/avatar.svg'),
           ),
           onPressed: controller.openEndDrawer,
         ),

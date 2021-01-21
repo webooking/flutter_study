@@ -21,25 +21,25 @@ const splashData = [
 const categoriesData = [
   {
     'name': 'Flight',
-    'svg': 'assets/images/flight.svg',
+    'svg': 'assets/icons/flight.svg',
     'backgroundColor': Color(0xFF5E64F4),
     'svgColor': Colors.white,
   },
   {
     'name': 'Hotel',
-    'svg': 'assets/images/hotel.svg',
+    'svg': 'assets/icons/hotel.svg',
     'backgroundColor': Color(0xFFFF665B),
     'svgColor': Colors.white,
   },
   {
     'name': 'Bus',
-    'svg': 'assets/images/bus.svg',
+    'svg': 'assets/icons/bus.svg',
     'backgroundColor': Color(0xFF00CFFF),
     'svgColor': Colors.white,
   },
   {
     'name': 'More',
-    'svg': 'assets/images/more.svg',
+    'svg': 'assets/icons/more.svg',
     'backgroundColor': Color(0xFFFF8945),
     'svgColor': Colors.white,
   },

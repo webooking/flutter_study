@@ -33,6 +33,8 @@ class HomeScreen extends GetView<HomeController> {
               SizedBox(height: S.y(40),),
               /// 4. recommended
               ...recommend(),
+              SizedBox(height: S.y(40),),
+              ...recommend(),
               /// 5. bottomNavigatorBar
             ],
           ),
