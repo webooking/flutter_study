@@ -3,12 +3,12 @@ import 'package:flutter/material.dart';
 
 class TaskItem {
   Key key;
-  final String topic;
-  final String date;
+  String topic;
+  String date;
 
   TaskItem({
-    @required this.topic,
-    @required this.date,
+    this.topic,
+    this.date,
   }) {
     key = UniqueKey();
   }

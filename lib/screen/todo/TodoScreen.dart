@@ -8,6 +8,7 @@ import 'package:flutter_study/model/TaskItem.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:get/get.dart';
 import 'package:table_calendar/table_calendar.dart';
+import 'package:flutter_study/util/DateTimeUtil.dart';
 
 class TodoScreen extends GetView<TodoController> {
   @override
@@ -16,13 +17,23 @@ class TodoScreen extends GetView<TodoController> {
       floatingActionButton: FloatingActionButton(
         onPressed: () => Get.dialog<void>(
           AlertDialog(
-            title: Text('This should not be closed automatically'),
-            content: Text('This should not be closed automatically'),
+            title: Text('Create New Task'),
+            content: Form(
+              key: controller.formKey,
+              child: Column(
+              children: [
+                _topicFormField(),
+                SizedBox(height: S.y(30)),
+                _dateFormField(context),
+                SizedBox(height: S.y(30)),
+              ],
+            ),),
             actions: <Widget>[
               TextButton(
                 child: Text('Save'),
                 onPressed: () {
-                  controller.tasks.add(TaskItem(topic: 'Yoga', date: '2021-01-19'));
+                  controller.formKey.currentState.save();
+                  controller.tasks.add(TaskItem(topic: controller.topicTextController.text, date: controller.dateTextController.text));
                   Get.back<void>();
                 },
               ),
@@ -56,6 +67,36 @@ class TodoScreen extends GetView<TodoController> {
       ),
     );
   }
+  Future _selectDate(BuildContext context) async {
+    final picked = await showDatePicker(
+      context: context,
+      initialDate: DateTime.now(),
+      firstDate: DateTime(2020),
+      lastDate: DateTime(2025),
+    );
+    if(picked != null){
+      controller.dateTextController.text = picked.toLocalString();
+    }
+  }
+  TextFormField _dateFormField(BuildContext context) => TextFormField(
+    controller: controller.dateTextController,
+    readOnly: true,
+    decoration: InputDecoration(
+      labelText: 'Date',
+      floatingLabelBehavior: FloatingLabelBehavior.always,
+      prefixIcon: Icon(Icons.date_range),
+    ),
+    onTap: () => _selectDate(context),
+  );
+  TextFormField _topicFormField() => TextFormField(
+    controller: controller.topicTextController,
+    decoration: InputDecoration(
+      labelText: 'Topic',
+      hintText: 'Enter task topic',
+      floatingLabelBehavior: FloatingLabelBehavior.always,
+      prefixIcon: Icon(Icons.topic),
+    ),
+  );
 
   List<Widget> _customTab({List<String> head, List<Widget> body}) => [
         Container(

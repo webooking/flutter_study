@@ -4,8 +4,14 @@ import 'package:get/get.dart';
 import 'package:table_calendar/table_calendar.dart';
 
 class TodoController extends GetxController with SingleGetTickerProviderMixin {
+  final formKey = GlobalKey<FormState>();
+
   TabController tabController;
   CalendarController calendarController;
+  TextEditingController dateTextController;
+  TextEditingController topicTextController;
+
+
   List<TaskItem> tasks = [
     TaskItem(topic: 'Yoga', date: '2021-01-19'),
     TaskItem(topic: 'Kickoff meeting', date: '2021-01-20'),
@@ -19,6 +25,8 @@ class TodoController extends GetxController with SingleGetTickerProviderMixin {
     super.onInit();
     tabController = TabController(vsync: this, length: 2);
     calendarController = CalendarController();
+    dateTextController = TextEditingController();
+    topicTextController = TextEditingController();
   }
 
   @override
