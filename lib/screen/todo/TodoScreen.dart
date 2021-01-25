@@ -16,35 +16,7 @@ class TodoScreen extends GetView<TodoController> {
     return Scaffold(
       floatingActionButton: FloatingActionButton(
         onPressed: () => Get.dialog<void>(
-          AlertDialog(
-            title: Text('Create New Task'),
-            content: Form(
-              key: controller.formKey,
-              child: Column(
-              children: [
-                _topicFormField(),
-                SizedBox(height: S.y(30)),
-                _dateFormField(context),
-                SizedBox(height: S.y(30)),
-              ],
-            ),),
-            actions: <Widget>[
-              TextButton(
-                child: Text('Save'),
-                onPressed: () {
-                  controller.formKey.currentState.save();
-                  controller.tasks.add(TaskItem(topic: controller.topicTextController.text, date: controller.dateTextController.text));
-                  Get.back<void>();
-                },
-              ),
-              TextButton(
-                child: Text('Close'),
-                onPressed: () {
-                  Get.back<void>();
-                },
-              )
-            ],
-          ),
+          _createTaskDialog(context),
           barrierDismissible: false,
         ),
         tooltip: 'Increment',
@@ -67,6 +39,40 @@ class TodoScreen extends GetView<TodoController> {
       ),
     );
   }
+
+  AlertDialog _createTaskDialog(BuildContext context) {
+    return AlertDialog(
+      title: Text('Create New Task'),
+      content: Form(
+        key: controller.formKey,
+        child: Column(
+          children: [
+            _topicFormField(),
+            SizedBox(height: S.y(30)),
+            _dateFormField(context),
+            SizedBox(height: S.y(30)),
+          ],
+        ),
+      ),
+      actions: <Widget>[
+        TextButton(
+          child: Text('Save'),
+          onPressed: () {
+            controller.formKey.currentState.save();
+            controller.tasks.add(TaskItem(topic: controller.topicTextController.text, date: controller.dateTextController.text));
+            Get.back<void>();
+          },
+        ),
+        TextButton(
+          child: Text('Close'),
+          onPressed: () {
+            Get.back<void>();
+          },
+        )
+      ],
+    );
+  }
+
   Future _selectDate(BuildContext context) async {
     final picked = await showDatePicker(
       context: context,
@@ -74,29 +80,30 @@ class TodoScreen extends GetView<TodoController> {
       firstDate: DateTime(2020),
       lastDate: DateTime(2025),
     );
-    if(picked != null){
+    if (picked != null) {
       controller.dateTextController.text = picked.toLocalString();
     }
   }
+
   TextFormField _dateFormField(BuildContext context) => TextFormField(
-    controller: controller.dateTextController,
-    readOnly: true,
-    decoration: InputDecoration(
-      labelText: 'Date',
-      floatingLabelBehavior: FloatingLabelBehavior.always,
-      prefixIcon: Icon(Icons.date_range),
-    ),
-    onTap: () => _selectDate(context),
-  );
+        controller: controller.dateTextController,
+        readOnly: true,
+        decoration: InputDecoration(
+          labelText: 'Date',
+          floatingLabelBehavior: FloatingLabelBehavior.always,
+          prefixIcon: Icon(Icons.date_range),
+        ),
+        onTap: () => _selectDate(context),
+      );
   TextFormField _topicFormField() => TextFormField(
-    controller: controller.topicTextController,
-    decoration: InputDecoration(
-      labelText: 'Topic',
-      hintText: 'Enter task topic',
-      floatingLabelBehavior: FloatingLabelBehavior.always,
-      prefixIcon: Icon(Icons.topic),
-    ),
-  );
+        controller: controller.topicTextController,
+        decoration: InputDecoration(
+          labelText: 'Topic',
+          hintText: 'Enter task topic',
+          floatingLabelBehavior: FloatingLabelBehavior.always,
+          prefixIcon: Icon(Icons.topic),
+        ),
+      );
 
   List<Widget> _customTab({List<String> head, List<Widget> body}) => [
         Container(
@@ -159,61 +166,42 @@ class TodoScreen extends GetView<TodoController> {
                             final item = controller.tasks[index];
 
                             return Dismissible(
-                              // Each Dismissible must contain a Key
-                              key: item.key,
-                              onDismissed: (direction) {
-                                // Remove the item from the data source.
-                                controller.tasks.removeAt(index);
-                                Get.snackbar<void>('Delete', '${item.topic} dismissed', snackPosition: SnackPosition.BOTTOM);
-                              },
-                              // Show a red background as the item is swiped away.
-                              background: Container(color: Colors.red),
-                              child: InkWell(
-                                splashColor: Colors.white.withOpacity(0.1),
-                                highlightColor: Colors.transparent,
-                                borderRadius: BorderRadius.circular(8),
-                                onTap: () => Get.dialog<void>(
-                                  AlertDialog(
-                                    title: Text('This should not be closed automatically'),
-                                    content: Text('This should not be closed automatically'),
-                                    actions: <Widget>[
-                                      TextButton(
-                                        child: Text('Delete'),
-                                        onPressed: () {
-                                          controller.tasks.removeAt(index);
-                                          Get.back<void>();
-                                        },
-                                      ),
-                                      TextButton(
-                                        child: Text('Close'),
-                                        onPressed: () {
-                                          Get.back<void>();
-                                        },
-                                      )
-                                    ],
+                                // Each Dismissible must contain a Key
+                                key: item.key,
+                                onDismissed: (direction) {
+                                  // Remove the item from the data source.
+                                  controller.tasks.removeAt(index);
+                                  Get.snackbar<void>('Delete', '${item.topic} dismissed', snackPosition: SnackPosition.BOTTOM);
+                                },
+                                // Show a red background as the item is swiped away.
+                                background: Container(color: Colors.red),
+                                child: InkWell(
+                                  splashColor: Colors.white.withOpacity(0.1),
+                                  highlightColor: Colors.transparent,
+                                  borderRadius: BorderRadius.circular(8),
+                                  onTap: () => Get.dialog<void>(
+                                    _deleteTaskDialog(index),
+                                    barrierDismissible: false,
                                   ),
-                                  barrierDismissible: false,
-                                ),
-                                child: ListTile(
-                                  leading: SvgPicture.asset(
-                                    'assets/icons/complete.svg',
-                                    height: 20,
-                                    width: 20,
-                                    color: random.nextBool() ? Colors.lightGreen : Colors.grey[300],
+                                  child: ListTile(
+                                    leading: SvgPicture.asset(
+                                      'assets/icons/complete.svg',
+                                      height: 20,
+                                      width: 20,
+                                      color: random.nextBool() ? Colors.lightGreen : Colors.grey[300],
+                                    ),
+                                    title: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                      children: [
+                                        Text(
+                                          '${item.topic}',
+                                          style: TextStyle(fontSize: 16.0, color: Colors.black, fontWeight: FontWeight.bold),
+                                        ),
+                                        Text('${item.date}'),
+                                      ],
+                                    ),
                                   ),
-                                  title: Row(
-                                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                    children: [
-                                      Text(
-                                        '${item.topic}',
-                                        style: TextStyle(fontSize: 16.0, color: Colors.black, fontWeight: FontWeight.bold),
-                                      ),
-                                      Text('${item.date}'),
-                                    ],
-                                  ),
-                                ),
-                              )
-                            );
+                                ));
                           });
                     }),
                   ],
@@ -223,4 +211,26 @@ class TodoScreen extends GetView<TodoController> {
           ),
         ],
       );
+
+  AlertDialog _deleteTaskDialog(int index) {
+    return AlertDialog(
+      title: Text('This should not be closed automatically'),
+      content: Text('This should not be closed automatically'),
+      actions: <Widget>[
+        TextButton(
+          child: Text('Delete'),
+          onPressed: () {
+            controller.tasks.removeAt(index);
+            Get.back<void>();
+          },
+        ),
+        TextButton(
+          child: Text('Close'),
+          onPressed: () {
+            Get.back<void>();
+          },
+        )
+      ],
+    );
+  }
 }
